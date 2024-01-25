@@ -20,7 +20,7 @@ class BaseConversionDescriptor(ABC):
         return getattr(instance, self._name, self._default)
 
     def __set__(self, instance: Any, value: Any) -> None:
-        setattr(instance, self._name, value)
+        setattr(instance, self._name, self.on_set(value))
 
     @abstractmethod
     def on_set(self, value):
